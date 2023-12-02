@@ -1,19 +1,21 @@
-using System;
-
-class Word
+public class Word
 {
-    string _word;
-    bool _visibiliy;
-    
-    public Void Word()
+    private string text;
+    public bool IsHidden { get; private set; }
+
+    public Word(string text)
     {
-        Console.WriteLine();
-    }
-    public Word(string _word, bool visibility = true)
-    {
-        Console.Writeline
+        this.text = text;
+        IsHidden = false;
     }
 
+    public void Hide()
+    {
+        IsHidden = true;
+    }
 
+    public string GetDisplayText()
+    {
+        return IsHidden ? "___" : text;
+    }
 }
-
