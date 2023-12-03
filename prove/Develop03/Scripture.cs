@@ -29,4 +29,27 @@ public class Scripture
     {
         return $"{reference.GetDisplayText()} {string.Join(" ", words.Select(w => w.GetDisplayText()))}";
     }
+
+    public void ShowHint()
+    {
+        var hiddenWords = words.Where(w => w.IsHidden).ToList();
+        if (hiddenWords.Any())
+        {
+            var random = new Random();
+            var wordToReveal = hiddenWords[random.Next(hiddenWords.Count)];
+            wordToReveal.Unhide();
+        }
+    }
+
+    public void HideWordsDifficulty(int difficulty)
+    {
+        int count = difficulty switch
+        {
+            1 => 1, // Easy
+            2 => 3, // Medium
+            3 => 5, // Hard
+            _ => 3, // Default to Medium
+        };
+        HideRandomWords(count);
+    }
 }

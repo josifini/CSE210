@@ -18,4 +18,9 @@ public class Word
     {
         return IsHidden ? "___" : text;
     }
+
+    public void Unhide()
+    {
+        IsHidden = false;
+    }
 }
